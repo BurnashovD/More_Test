@@ -17,9 +17,9 @@ final class UsersListViewController: UIViewController {
         return table
     }()
     
-    // MARK: - Private properties
+    // MARK: - Public properties
     
-    private let users: [User] = [.init(id: 1, login: "@Loh", name: "Daniil Burnashov", company: "Apple", prifilePhoto: "", email: "aaa@mail.ru", followers: 2, following: 4, createdDate: "2014-06-30T22:41:56Z")]
+    var presenter: UsersListPresenterProtocol?
     
     // MARK: - Public methods
     
@@ -27,6 +27,7 @@ final class UsersListViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         setupLayout()
+        presenter?.fetchUsers()
     }
     
     // MARK: - Private methods
@@ -36,6 +37,7 @@ final class UsersListViewController: UIViewController {
         configureTableView()
         usersTableView.separatorStyle = .none
         view.addSubview(usersTableView)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureTableView() {
@@ -58,18 +60,37 @@ final class UsersListViewController: UIViewController {
 
 extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        50
+        guard let count = presenter?.users.count else { return 0 }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell,
+            let user = presenter?.users[indexPath.row]
         else { return UITableViewCell() }
+        
+        cell.configure(user)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard
+            let selectedCell = tableView.indexPathForSelectedRow,
+            let cell = tableView.cellForRow(at: selectedCell) as? UserCell
+        else { return }
+        let user = cell.createSelectedUser()
+        presenter?.goForward(user)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
+    }
+}
+
+extension UsersListViewController: UsersListViewProtocol {
+    func loadUsers() {
+        usersTableView.reloadData()
     }
 }
 

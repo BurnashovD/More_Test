@@ -22,6 +22,25 @@
 		A562A71529D209A100C02C26 /* ProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A71429D209A100C02C26 /* ProfilePhotoCell.swift */; };
 		A562A71729D20A3F00C02C26 /* PersonalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A71629D20A3F00C02C26 /* PersonalInfoCell.swift */; };
 		A562A71929D20A4C00C02C26 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A71829D20A4C00C02C26 /* UserInfoCell.swift */; };
+		A562A71C29D2291400C02C26 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A71B29D2291400C02C26 /* UsersListPresenter.swift */; };
+		A562A71E29D2291E00C02C26 /* UsersListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A71D29D2291E00C02C26 /* UsersListPresenterProtocol.swift */; };
+		A562A72129D2294800C02C26 /* UsersListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A72029D2294800C02C26 /* UsersListViewProtocol.swift */; };
+		A562A72529D2298000C02C26 /* UserInfoViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A72429D2298000C02C26 /* UserInfoViewProtocol.swift */; };
+		A562A72829D2299E00C02C26 /* UserInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A72729D2299E00C02C26 /* UserInfoPresenter.swift */; };
+		A562A72A29D229A800C02C26 /* UserInfoPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A72929D229A800C02C26 /* UserInfoPresenterProtocol.swift */; };
+		A562A72F29D229EB00C02C26 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A72E29D229EB00C02C26 /* NetworkService.swift */; };
+		A562A73129D229FB00C02C26 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A73029D229FB00C02C26 /* NetworkServiceProtocol.swift */; };
+		A562A73429D22A9400C02C26 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A562A73329D22A9400C02C26 /* Moya */; };
+		A562A73729D22ADA00C02C26 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = A562A73629D22ADA00C02C26 /* PromiseKit */; };
+		A562A73A29D2387C00C02C26 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A73929D2387C00C02C26 /* Routable.swift */; };
+		A562A73C29D238B500C02C26 /* UsersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A73B29D238B400C02C26 /* UsersListRouter.swift */; };
+		A562A73F29D238E700C02C26 /* UsersListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A73E29D238E700C02C26 /* UsersListBuilder.swift */; };
+		A562A74129D23ECC00C02C26 /* UserInfoModulBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A74029D23ECC00C02C26 /* UserInfoModulBuilder.swift */; };
+		A562A74329D23F1F00C02C26 /* UserInfoRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A74229D23F1F00C02C26 /* UserInfoRouterProtocol.swift */; };
+		A562A74529D23F2E00C02C26 /* UserInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A74429D23F2E00C02C26 /* UserInfoRouter.swift */; };
+		A562A74829D241CF00C02C26 /* ImageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A74729D241CF00C02C26 /* ImageServiceProtocol.swift */; };
+		A562A74A29D241D800C02C26 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A74929D241D800C02C26 /* ImageService.swift */; };
+		A562A74C29D2466000C02C26 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A74B29D2466000C02C26 /* UIImageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +79,23 @@
 		A562A71429D209A100C02C26 /* ProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCell.swift; sourceTree = "<group>"; };
 		A562A71629D20A3F00C02C26 /* PersonalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoCell.swift; sourceTree = "<group>"; };
 		A562A71829D20A4C00C02C26 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		A562A71B29D2291400C02C26 /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
+		A562A71D29D2291E00C02C26 /* UsersListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenterProtocol.swift; sourceTree = "<group>"; };
+		A562A72029D2294800C02C26 /* UsersListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewProtocol.swift; sourceTree = "<group>"; };
+		A562A72429D2298000C02C26 /* UserInfoViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewProtocol.swift; sourceTree = "<group>"; };
+		A562A72729D2299E00C02C26 /* UserInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPresenter.swift; sourceTree = "<group>"; };
+		A562A72929D229A800C02C26 /* UserInfoPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPresenterProtocol.swift; sourceTree = "<group>"; };
+		A562A72E29D229EB00C02C26 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A562A73029D229FB00C02C26 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		A562A73929D2387C00C02C26 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		A562A73B29D238B400C02C26 /* UsersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListRouter.swift; sourceTree = "<group>"; };
+		A562A73E29D238E700C02C26 /* UsersListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListBuilder.swift; sourceTree = "<group>"; };
+		A562A74029D23ECC00C02C26 /* UserInfoModulBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModulBuilder.swift; sourceTree = "<group>"; };
+		A562A74229D23F1F00C02C26 /* UserInfoRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRouterProtocol.swift; sourceTree = "<group>"; };
+		A562A74429D23F2E00C02C26 /* UserInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRouter.swift; sourceTree = "<group>"; };
+		A562A74729D241CF00C02C26 /* ImageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceProtocol.swift; sourceTree = "<group>"; };
+		A562A74929D241D800C02C26 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		A562A74B29D2466000C02C26 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A562A73429D22A9400C02C26 /* Moya in Frameworks */,
+				A562A73729D22ADA00C02C26 /* PromiseKit in Frameworks */,
 				A562A70A29D1D0EE00C02C26 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +154,10 @@
 				A562A71129D2095F00C02C26 /* UsersList */,
 				A562A71229D2096D00C02C26 /* UserInfo */,
 				A562A71329D2097900C02C26 /* Models */,
+				A562A72D29D229D900C02C26 /* Services */,
+				A562A73829D2386D00C02C26 /* Router */,
+				A562A73D29D238D700C02C26 /* Builders */,
+				A562A74B29D2466000C02C26 /* UIImageView+Extension.swift */,
 				A562A6E129D1CFDF00C02C26 /* Assets.xcassets */,
 				A562A6E329D1CFDF00C02C26 /* LaunchScreen.storyboard */,
 				A562A6E629D1CFDF00C02C26 /* Info.plist */,
@@ -143,8 +185,9 @@
 		A562A71129D2095F00C02C26 /* UsersList */ = {
 			isa = PBXGroup;
 			children = (
-				A562A6DC29D1CFDD00C02C26 /* UsersListViewController.swift */,
-				A562A70D29D1D38D00C02C26 /* UserCell.swift */,
+				A562A71F29D2293600C02C26 /* View */,
+				A562A71A29D2290300C02C26 /* Presenter */,
+				A562A72229D2296A00C02C26 /* Cells */,
 			);
 			path = UsersList;
 			sourceTree = "<group>";
@@ -152,10 +195,9 @@
 		A562A71229D2096D00C02C26 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				A562A70F29D2088400C02C26 /* UserInfoViewController.swift */,
-				A562A71429D209A100C02C26 /* ProfilePhotoCell.swift */,
-				A562A71629D20A3F00C02C26 /* PersonalInfoCell.swift */,
-				A562A71829D20A4C00C02C26 /* UserInfoCell.swift */,
+				A562A72629D2298900C02C26 /* Presenter */,
+				A562A72329D2297400C02C26 /* View */,
+				A562A72B29D229BC00C02C26 /* Cells */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -166,6 +208,99 @@
 				A562A70B29D1D22600C02C26 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A562A71A29D2290300C02C26 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A562A71B29D2291400C02C26 /* UsersListPresenter.swift */,
+				A562A71D29D2291E00C02C26 /* UsersListPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A562A71F29D2293600C02C26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A562A6DC29D1CFDD00C02C26 /* UsersListViewController.swift */,
+				A562A72029D2294800C02C26 /* UsersListViewProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A562A72229D2296A00C02C26 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A562A70D29D1D38D00C02C26 /* UserCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A562A72329D2297400C02C26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A562A70F29D2088400C02C26 /* UserInfoViewController.swift */,
+				A562A72429D2298000C02C26 /* UserInfoViewProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A562A72629D2298900C02C26 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A562A72729D2299E00C02C26 /* UserInfoPresenter.swift */,
+				A562A72929D229A800C02C26 /* UserInfoPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A562A72B29D229BC00C02C26 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A562A71429D209A100C02C26 /* ProfilePhotoCell.swift */,
+				A562A71629D20A3F00C02C26 /* PersonalInfoCell.swift */,
+				A562A71829D20A4C00C02C26 /* UserInfoCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A562A72D29D229D900C02C26 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A562A74629D241C100C02C26 /* Protocols */,
+				A562A72E29D229EB00C02C26 /* NetworkService.swift */,
+				A562A74929D241D800C02C26 /* ImageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A562A73829D2386D00C02C26 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A562A73929D2387C00C02C26 /* Routable.swift */,
+				A562A74229D23F1F00C02C26 /* UserInfoRouterProtocol.swift */,
+				A562A74429D23F2E00C02C26 /* UserInfoRouter.swift */,
+				A562A73B29D238B400C02C26 /* UsersListRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A562A73D29D238D700C02C26 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				A562A73E29D238E700C02C26 /* UsersListBuilder.swift */,
+				A562A74029D23ECC00C02C26 /* UserInfoModulBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		A562A74629D241C100C02C26 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A562A73029D229FB00C02C26 /* NetworkServiceProtocol.swift */,
+				A562A74729D241CF00C02C26 /* ImageServiceProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +321,8 @@
 			name = More_Test;
 			packageProductDependencies = (
 				A562A70929D1D0EE00C02C26 /* SnapKit */,
+				A562A73329D22A9400C02C26 /* Moya */,
+				A562A73629D22ADA00C02C26 /* PromiseKit */,
 			);
 			productName = More_Test;
 			productReference = A562A6D529D1CFDD00C02C26 /* More_Test.app */;
@@ -261,6 +398,8 @@
 			mainGroup = A562A6CC29D1CFDD00C02C26;
 			packageReferences = (
 				A562A70829D1D0EE00C02C26 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A562A73229D22A9400C02C26 /* XCRemoteSwiftPackageReference "Moya" */,
+				A562A73529D22ADA00C02C26 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = A562A6D629D1CFDD00C02C26 /* Products */;
 			projectDirPath = "";
@@ -306,12 +445,29 @@
 			files = (
 				A562A70C29D1D22600C02C26 /* User.swift in Sources */,
 				A562A71729D20A3F00C02C26 /* PersonalInfoCell.swift in Sources */,
+				A562A74C29D2466000C02C26 /* UIImageView+Extension.swift in Sources */,
 				A562A71029D2088400C02C26 /* UserInfoViewController.swift in Sources */,
+				A562A74829D241CF00C02C26 /* ImageServiceProtocol.swift in Sources */,
+				A562A73C29D238B500C02C26 /* UsersListRouter.swift in Sources */,
+				A562A71C29D2291400C02C26 /* UsersListPresenter.swift in Sources */,
+				A562A73129D229FB00C02C26 /* NetworkServiceProtocol.swift in Sources */,
+				A562A73F29D238E700C02C26 /* UsersListBuilder.swift in Sources */,
+				A562A74329D23F1F00C02C26 /* UserInfoRouterProtocol.swift in Sources */,
+				A562A72A29D229A800C02C26 /* UserInfoPresenterProtocol.swift in Sources */,
 				A562A71529D209A100C02C26 /* ProfilePhotoCell.swift in Sources */,
+				A562A73A29D2387C00C02C26 /* Routable.swift in Sources */,
+				A562A71E29D2291E00C02C26 /* UsersListPresenterProtocol.swift in Sources */,
 				A562A6DD29D1CFDD00C02C26 /* UsersListViewController.swift in Sources */,
+				A562A72529D2298000C02C26 /* UserInfoViewProtocol.swift in Sources */,
 				A562A6D929D1CFDD00C02C26 /* AppDelegate.swift in Sources */,
+				A562A74529D23F2E00C02C26 /* UserInfoRouter.swift in Sources */,
+				A562A72F29D229EB00C02C26 /* NetworkService.swift in Sources */,
+				A562A72829D2299E00C02C26 /* UserInfoPresenter.swift in Sources */,
 				A562A70E29D1D38D00C02C26 /* UserCell.swift in Sources */,
+				A562A72129D2294800C02C26 /* UsersListViewProtocol.swift in Sources */,
+				A562A74129D23ECC00C02C26 /* UserInfoModulBuilder.swift in Sources */,
 				A562A6DB29D1CFDD00C02C26 /* SceneDelegate.swift in Sources */,
+				A562A74A29D241D800C02C26 /* ImageService.swift in Sources */,
 				A562A71929D20A4C00C02C26 /* UserInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,6 +810,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		A562A73229D22A9400C02C26 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+		A562A73529D22ADA00C02C26 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -661,6 +833,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A562A70829D1D0EE00C02C26 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		A562A73329D22A9400C02C26 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A562A73229D22A9400C02C26 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		A562A73629D22ADA00C02C26 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A562A73529D22ADA00C02C26 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -25,7 +25,6 @@ final class UserCell: UITableViewCell {
         image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         image.layer.cornerRadius = image.frame.size.width / 2
         image.layer.masksToBounds = false
-        image.image = UIImage(named: "wom")
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +33,6 @@ final class UserCell: UITableViewCell {
     
     private let usersLoginLabel: UILabel = {
         let label = UILabel()
-        label.text = "BurnashovDl"
         label.font = .systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -43,7 +41,6 @@ final class UserCell: UITableViewCell {
     private let usersIdLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "3421"
         label.font = .systemFont(ofSize: 10)
         return label
     }()
@@ -55,6 +52,11 @@ final class UserCell: UITableViewCell {
         image.tintColor = .black
         return image
     }()
+    
+    // MARK: - Private properties
+    
+    private var id = 0
+    private var login = ""
     
     // MARK: - Public methods
     
@@ -68,6 +70,19 @@ final class UserCell: UITableViewCell {
         createStackViewConstraints()
         createUserImageViewConstraints()
         createShowMoreImageViewConstraints()
+    }
+    
+    func configure(_ user: User) {
+        id = user.id
+        login = user.login
+        usersProfilePhotoImageView.loadImage(user.prifilePhoto)
+        usersLoginLabel.text = user.login
+        usersIdLabel.text = "id: \(user.id)"
+    }
+    
+    func createSelectedUser() -> User {
+        let user = User(id: id, login: login, name: "", company: "", prifilePhoto: "", email: "", followers: 0, following: 0, createdDate: "")
+        return user
     }
     
     // MARK: - Private methods

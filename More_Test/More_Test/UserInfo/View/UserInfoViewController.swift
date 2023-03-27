@@ -18,6 +18,8 @@ final class UserInfoViewController: UIViewController {
         return table
     }()
     
+    var presenter: UserInfoPresenterProtocol?
+    
     // MARK: - Private properties
     
     private let cellTypes: [CellTypes] = [.photo, .personal, .info]
@@ -34,7 +36,6 @@ final class UserInfoViewController: UIViewController {
     // MARK: - Private methods
     
     private func configureUI() {
-        title = "SomeUser"
         navigationController?.navigationBar.prefersLargeTitles = true
         configureTableView()
         view.addSubview(userInfoTableView)
@@ -106,6 +107,10 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
             return 120
         }
     }
+}
+
+extension UserInfoViewController: UserInfoViewProtocol {
+    
 }
 
 private extension UserInfoViewController {
