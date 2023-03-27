@@ -195,8 +195,8 @@
 		A562A71229D2096D00C02C26 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				A562A72629D2298900C02C26 /* Presenter */,
 				A562A72329D2297400C02C26 /* View */,
+				A562A72629D2298900C02C26 /* Presenter */,
 				A562A72B29D229BC00C02C26 /* Cells */,
 			);
 			path = UserInfo;

@@ -16,7 +16,6 @@ final class ProfilePhotoCell: UITableViewCell {
         image.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         image.clipsToBounds = true
         image.layer.cornerRadius = image.bounds.width / 2
-        image.image = UIImage(named: "wom")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -31,6 +30,10 @@ final class ProfilePhotoCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         createImageViewConstraint()
+    }
+    
+    func configure(user: User) {
+        usersPhotoImageView.loadImage(user.prifilePhoto)
     }
     
     // MARK: - Private methods

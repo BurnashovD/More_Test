@@ -10,16 +10,17 @@ import Foundation
 
 struct NetworkService: NetworkServiceProtocol {
     
-    private let usersProvider = MoyaProvider<GitHub<Int>>()
+    private let usersProvider = MoyaProvider<GitHub<Any>>()
     
-    func fetchUsers(method: GitHub<Int>, request: RequestType, _ completion: @escaping ((Result<[User], Error>) -> Void)) {
+    func fetchUsers(method: GitHub<Any>, request: RequestType, _ completion: @escaping ((Result<[User], Error>) -> Void)) {
         usersProvider.request(method) { result in
-            
             switch result {
             case let .success(response):
                 do {
                     guard request == .users else {
-                        guard let users = try? JSONDecoder().decode(User.self, from: response.data) else { return }
+                        guard
+                            let users = try? JSONDecoder().decode(User.self, from: response.data)
+                        else { return }
                         completion(.success([users]))
                         return
                     }
@@ -50,8 +51,8 @@ extension GitHub: TargetType {
         switch self {
         case .users:
             return "/users"
-        case let .user(id):
-            return "/users/\(id)"
+        case let .user(login):
+            return "/users/\(login)"
         }
     }
     

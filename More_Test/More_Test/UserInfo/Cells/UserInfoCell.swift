@@ -16,6 +16,31 @@ final class UserInfoCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
+    
+    private let followingLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 25)
+        return label
+    }()
+    
+    private let followersLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 25)
+        return label
+    }()
+    
+    private let createdDateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 15)
+        return label
+    }()
+    
+    // MARK: - Private properties
+    
+    private var index = 0
 
     // MARK: - Public methods
     
@@ -28,41 +53,25 @@ final class UserInfoCell: UITableViewCell {
         super.layoutSubviews()
         createStackViewConstraints()
     }
-    
+    // TODO: - Исправь форматтер даты!
     func configure(_ user: User) {
-        addSubviewsOnStack(user: user)
+        followersLabel.text = "Followers: \(user.followers)"
+        followingLabel.text = "Following: \(user.following)"
+        createdDateLabel.text = convertDateFormat(inputDate: user.createdDate)
     }
     
     // MARK: - Private methods
     
     private func configureUI() {
+        addSubviewsOnStack()
         backgroundColor = UIColor(named: "default")
         addSubview(userInfoStackView)
     }
     
-    private func addSubviewsOnStack(user: User) {
-        (0 ... 2).forEach { index in
-            let label = UILabel()
-            label.textColor = .white
-            label.text = configureLabelText(index, user: user)
-            label.font = .systemFont(ofSize: index == 2 ? 15 : 25)
-            label.textColor = index == 2 ? .black : .white
-            userInfoStackView.addArrangedSubview(label)
-        }
-    }
-    
-    private func configureLabelText(_ index: Int, user: User) -> String {
-        switch index {
-        case 0:
-            return "Following: \(user.following)"
-        case 1:
-            return "Followers: \(user.followers)"
-        case 2:
-            return "Account created: \(convertDateFormat(inputDate: user.createdDate))"
-        default:
-            break
-        }
-        return ""
+    private func addSubviewsOnStack() {
+        userInfoStackView.addArrangedSubview(followersLabel)
+        userInfoStackView.addArrangedSubview(followingLabel)
+        userInfoStackView.addArrangedSubview(createdDateLabel)
     }
     
     private func createStackViewConstraints() {

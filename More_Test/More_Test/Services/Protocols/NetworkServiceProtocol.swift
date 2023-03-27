@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetchUsers(method: GitHub<Int>, request: RequestType, _ completion: @escaping ((Result<[User], Error>) -> Void))
+    func fetchUsers(method: GitHub<Any>, request: RequestType, _ completion: @escaping ((Result<[User], Error>) -> Void))
 }

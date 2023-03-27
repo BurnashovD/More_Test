@@ -38,12 +38,14 @@ final class UsersListViewController: UIViewController {
         usersTableView.separatorStyle = .none
         view.addSubview(usersTableView)
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barTintColor = UIColor(named: "default")
     }
     
     private func configureTableView() {
         usersTableView.backgroundColor = UIColor(named: "default")
         usersTableView.delegate = self
         usersTableView.dataSource = self
+        usersTableView.prefetchDataSource = self
         usersTableView.register(UserCell.self, forCellReuseIdentifier: "userCell")
     }
     
@@ -58,7 +60,8 @@ final class UsersListViewController: UIViewController {
     }
 }
 
-extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
+/// UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching
+extension UsersListViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = presenter?.users.count else { return 0 }
         return count
@@ -83,6 +86,18 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         presenter?.goForward(user)
     }
     
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        // TODO: - Добавить insertRows по indexPath
+        let current = indexPaths.map { "\($0.row)" }.joined(separator: ", ")
+        guard
+            let row = Int(current),
+            let count = presenter?.users.count,
+            row >= count - 1
+        else { return }
+        presenter?.fetchForwardUsers()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
     }
@@ -90,6 +105,10 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension UsersListViewController: UsersListViewProtocol {
     func loadUsers() {
+        usersTableView.reloadData()
+    }
+    
+    func loadForwardUsers() {
         usersTableView.reloadData()
     }
 }

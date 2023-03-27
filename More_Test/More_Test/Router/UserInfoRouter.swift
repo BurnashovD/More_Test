@@ -16,8 +16,6 @@ struct UserInfoRouter: UserInfoRouterProtocol {
     }
     
     func back() {
-        
+        navigationController.popViewController(animated: true)
     }
-    
-    
 }

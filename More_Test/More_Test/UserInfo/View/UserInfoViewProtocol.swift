@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UserInfoViewProtocol: AnyObject {
-    
+    func loadUserInfo()
 }

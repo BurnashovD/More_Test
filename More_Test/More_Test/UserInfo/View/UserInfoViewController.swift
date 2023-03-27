@@ -14,6 +14,7 @@ final class UserInfoViewController: UIViewController {
     private let userInfoTableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
+        table.allowsSelection = false
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -23,7 +24,6 @@ final class UserInfoViewController: UIViewController {
     // MARK: - Private properties
     
     private let cellTypes: [CellTypes] = [.photo, .personal, .info]
-    private let users: [User] = [.init(id: 1, login: "@Loh", name: "Daniil Burnashov", company: "Apple", prifilePhoto: "", email: "aaa@mail.ru", followers: 2, following: 4, createdDate: "2014-06-30T22:41:56")]
 
     // MARK: - Public methods
     
@@ -31,12 +31,14 @@ final class UserInfoViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         setupLayout()
+        presenter?.fetchInfo()
     }
     
     // MARK: - Private methods
     
     private func configureUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = .black
         configureTableView()
         view.addSubview(userInfoTableView)
     }
@@ -77,21 +79,26 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
         switch type {
         case .photo:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as? ProfilePhotoCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as? ProfilePhotoCell,
+                let user = presenter?.user
             else { return UITableViewCell() }
+            cell.configure(user: user)
             return cell
             
         case .personal:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath) as? PersonalInfoCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath) as? PersonalInfoCell,
+                let user = presenter?.user
             else { return UITableViewCell() }
+            cell.configure(user)
             return cell
             
         case .info:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? UserInfoCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? UserInfoCell,
+                let user = presenter?.user
             else { return UITableViewCell() }
-            cell.configure(users[indexPath.row])
+            cell.configure(user)
             return cell
         }
     }
@@ -110,7 +117,9 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension UserInfoViewController: UserInfoViewProtocol {
-    
+    func loadUserInfo() {
+        userInfoTableView.reloadData()
+    }
 }
 
 private extension UserInfoViewController {

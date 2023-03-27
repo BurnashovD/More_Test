@@ -8,5 +8,6 @@
 import Foundation
 
 protocol UserInfoPresenterProtocol {
-    
+    var user: User { get set }
+    func fetchInfo()
 }
