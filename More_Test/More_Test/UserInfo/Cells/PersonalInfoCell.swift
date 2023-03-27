@@ -13,7 +13,6 @@ final class PersonalInfoCell: UITableViewCell {
     
     private let userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Daniil Burnashov"
         label.textColor = .white
         label.font = .systemFont(ofSize: 25, weight: .medium)
         return label
@@ -21,7 +20,6 @@ final class PersonalInfoCell: UITableViewCell {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "danil-burnashov@mail.ru"
         label.textColor = .black
         label.font = .systemFont(ofSize: 15)
         return label
@@ -29,7 +27,6 @@ final class PersonalInfoCell: UITableViewCell {
     
     private let companyNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Company: More.tv"
         label.textColor = .white
         label.font = .systemFont(ofSize: 17)
         return label
@@ -52,6 +49,12 @@ final class PersonalInfoCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         createStackViewConstraints()
+    }
+    
+    func configure(_ user: User) {
+        userNameLabel.text = user.name == "" ? "no name" : user.name
+        emailLabel.text = user.email == "" ? "no email" : user.email
+        companyNameLabel.text = user.company == "" ? "no company" : "Company: \(user.company)"
     }
     
     // MARK: - Private methods
