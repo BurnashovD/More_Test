@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Ячейка с фото пользователя
 final class ProfilePhotoCell: UITableViewCell {
     // MARK: - Visual components
     
@@ -39,7 +40,7 @@ final class ProfilePhotoCell: UITableViewCell {
     // MARK: - Private methods
     
     private func configureUI() {
-        backgroundColor = UIColor(named: "default")
+        backgroundColor = UIColor(named: Constants.defaultColorName)
         addSubview(usersPhotoImageView)
     }
     
@@ -50,5 +51,11 @@ final class ProfilePhotoCell: UITableViewCell {
             make.width.height.equalTo(200)
         }
     }
+}
 
+/// Константы
+private extension ProfilePhotoCell {
+    enum Constants {
+        static let defaultColorName = "default"
+    }
 }

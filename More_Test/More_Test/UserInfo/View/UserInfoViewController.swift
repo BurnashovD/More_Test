@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Экран с информацией о выбранном пользователе
 final class UserInfoViewController: UIViewController {
     // MARK: - Visual components
     
@@ -18,6 +19,8 @@ final class UserInfoViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
+    
+    // MARK: - Public properties
     
     var presenter: UserInfoPresenterProtocol?
     
@@ -44,12 +47,12 @@ final class UserInfoViewController: UIViewController {
     }
     
     private func configureTableView() {
-        userInfoTableView.backgroundColor = UIColor(named: "default")
+        userInfoTableView.backgroundColor = UIColor(named: Constants.defaultColorName)
         userInfoTableView.delegate = self
         userInfoTableView.dataSource = self
-        userInfoTableView.register(ProfilePhotoCell.self, forCellReuseIdentifier: "photoCell")
-        userInfoTableView.register(PersonalInfoCell.self, forCellReuseIdentifier: "personalCell")
-        userInfoTableView.register(UserInfoCell.self, forCellReuseIdentifier: "infoCell")
+        userInfoTableView.register(ProfilePhotoCell.self, forCellReuseIdentifier: Constants.photoCellIdentifier)
+        userInfoTableView.register(PersonalInfoCell.self, forCellReuseIdentifier: Constants.personalInfoCellIdentifier)
+        userInfoTableView.register(UserInfoCell.self, forCellReuseIdentifier: Constants.infoCellIdentifier)
     }
 
     
@@ -62,9 +65,16 @@ final class UserInfoViewController: UIViewController {
             make.top.bottom.leading.trailing.equalTo(view)
         }
     }
-    
 }
 
+/// Реализация протокола вью
+extension UserInfoViewController: UserInfoViewProtocol {
+    func loadUserInfo() {
+        userInfoTableView.reloadData()
+    }
+}
+
+/// UITableViewDelegate, UITableViewDataSource
 extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         cellTypes.count
@@ -79,7 +89,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
         switch type {
         case .photo:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as? ProfilePhotoCell,
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.photoCellIdentifier, for: indexPath) as? ProfilePhotoCell,
                 let user = presenter?.user
             else { return UITableViewCell() }
             cell.configure(user: user)
@@ -87,7 +97,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .personal:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath) as? PersonalInfoCell,
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.personalInfoCellIdentifier, for: indexPath) as? PersonalInfoCell,
                 let user = presenter?.user
             else { return UITableViewCell() }
             cell.configure(user)
@@ -95,7 +105,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .info:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? UserInfoCell,
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.infoCellIdentifier, for: indexPath) as? UserInfoCell,
                 let user = presenter?.user
             else { return UITableViewCell() }
             cell.configure(user)
@@ -107,22 +117,27 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
         let type = cellTypes[indexPath.section]
         switch type {
         case .photo:
-            return 200
+            return Constants.photoCellHeight
         case .personal:
-            return 70
+            return Constants.personalCellHeight
         case .info:
-            return 120
+            return Constants.infoCellHeight
         }
     }
 }
 
-extension UserInfoViewController: UserInfoViewProtocol {
-    func loadUserInfo() {
-        userInfoTableView.reloadData()
-    }
-}
-
+/// Константы и типы ячеек
 private extension UserInfoViewController {
+    enum Constants {
+        static let infoCellIdentifier = "infoCell"
+        static let personalInfoCellIdentifier = "personalCell"
+        static let photoCellIdentifier = "photoCell"
+        static let defaultColorName = "default"
+        static let photoCellHeight: CGFloat = 200
+        static let personalCellHeight: CGFloat = 70
+        static let infoCellHeight: CGFloat = 140
+    }
+    
     enum CellTypes {
         case photo
         case personal

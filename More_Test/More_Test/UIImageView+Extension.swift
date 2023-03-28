@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Расширение для загрузки изображений
 extension UIImageView {
     func loadImage(_ url: String) {
         let imageService = ImageService()

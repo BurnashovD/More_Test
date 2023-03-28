@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Ячейка с информацией о пользователе
 final class UserInfoCell: UITableViewCell {
     // MARK: - Visual components
     
@@ -53,18 +54,18 @@ final class UserInfoCell: UITableViewCell {
         super.layoutSubviews()
         createStackViewConstraints()
     }
-    // TODO: - Исправь форматтер даты!
+    
     func configure(_ user: User) {
-        followersLabel.text = "Followers: \(user.followers)"
-        followingLabel.text = "Following: \(user.following)"
-        createdDateLabel.text = convertDateFormat(inputDate: user.createdDate)
+        followersLabel.text = "\(Constants.followersText) \(user.followers)"
+        followingLabel.text = "\(Constants.followingText) \(user.following)"
+        createdDateLabel.text = "\(Constants.accountCreatedText) \(convertDateFormat(inputDate: user.createdDate))"
     }
     
     // MARK: - Private methods
     
     private func configureUI() {
         addSubviewsOnStack()
-        backgroundColor = UIColor(named: "default")
+        backgroundColor = UIColor(named: Constants.defaultColorName)
         addSubview(userInfoStackView)
     }
     
@@ -83,11 +84,26 @@ final class UserInfoCell: UITableViewCell {
     }
     
     private func convertDateFormat(inputDate: String) -> String {
+        guard !inputDate.isEmpty else { return "" }
+        var value = inputDate
+        value.removeLast()
         let olDateFormatter = DateFormatter()
-        olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        guard let oldDate = olDateFormatter.date(from: inputDate) else { return "" }
+        olDateFormatter.dateFormat = Constants.oldDateFormat
+        guard let oldDate = olDateFormatter.date(from: value) else { return "" }
         let convertDateFormatter = DateFormatter()
-        convertDateFormatter.dateFormat = "dd MMM yyyy h:mm a"
+        convertDateFormatter.dateFormat = Constants.newDateFormat
         return convertDateFormatter.string(from: oldDate)
+    }
+}
+
+/// Константы
+private extension UserInfoCell {
+    enum Constants {
+        static let defaultColorName = "default"
+        static let oldDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let newDateFormat = "dd MMM yyyy h:mm a"
+        static let followersText = "Followers:"
+        static let followingText = "Following:"
+        static let accountCreatedText = "Account created:"
     }
 }

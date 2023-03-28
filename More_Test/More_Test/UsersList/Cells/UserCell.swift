@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Ячейка пользователя
 final class UserCell: UITableViewCell {
     // MARK: - Visual components
     
@@ -48,7 +49,7 @@ final class UserCell: UITableViewCell {
     private let showMoreImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "chevron.right")
+        image.image = UIImage(systemName: Constant.chevronImageName)
         image.tintColor = .black
         return image
     }()
@@ -77,7 +78,7 @@ final class UserCell: UITableViewCell {
         login = user.login
         usersProfilePhotoImageView.loadImage(user.prifilePhoto)
         usersLoginLabel.text = user.login
-        usersIdLabel.text = "id: \(user.id)"
+        usersIdLabel.text = "\(Constant.idText) \(user.id)"
     }
     
     func createSelectedUser() -> User {
@@ -88,7 +89,7 @@ final class UserCell: UITableViewCell {
     // MARK: - Private methods
     
     private func configureUI() {
-        contentView.backgroundColor = UIColor(named: "default")
+        contentView.backgroundColor = UIColor(named: Constant.defaultColorName)
         addSubviewsToStack()
         addSubview(showMoreImageView)
         addSubview(usersProfilePhotoImageView)
@@ -124,5 +125,14 @@ final class UserCell: UITableViewCell {
             make.leading.equalTo(contentView.snp.leading).offset(10)
             make.width.height.equalTo(usersProfilePhotoImageView.bounds.height)
         }
+    }
+}
+
+/// Константы
+private extension UserCell {
+    enum Constant {
+        static let defaultColorName = "default"
+        static let idText = "id:"
+        static let chevronImageName = "chevron.right"
     }
 }

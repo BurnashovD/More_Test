@@ -7,15 +7,25 @@
 
 import Foundation
 
+/// Пользователь
 struct User: Decodable {
+    /// Идентификатор
     let id: Int
+    /// Логин
     let login: String
+    /// Имя
     let name: String
+    /// Компания
     let company: String
+    /// Фото профиля
     let prifilePhoto: String
+    /// Почта
     let email: String
+    /// Подписчики
     let followers: Int
+    /// Подписки
     let following: Int
+    /// Дата создания аккаунта
     let createdDate: String
     
     enum CodingKeys: String, CodingKey {

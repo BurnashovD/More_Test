@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Протокол вью экрана с информацией о выбранном пользователе
 protocol UserInfoViewProtocol: AnyObject {
     func loadUserInfo()
 }

@@ -7,13 +7,19 @@
 
 import UIKit
 
+/// Роутер экрана списка пользователей
 struct UsersListRouter: BaseRouterProtocol {
+    // MARK: - Private propeties
     
     private let navigationController: UINavigationController
+    
+    // MARK: - init
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+    
+    // MARK: - Public methods
     
     func initialVC() {
         let modul = UsersListModulBuilder.build(navigationController: navigationController)

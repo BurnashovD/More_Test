@@ -7,7 +7,9 @@
 
 import Foundation
 
+/// Протокол вью списка пользователей
 protocol UsersListViewProtocol: AnyObject {
     func loadUsers()
-    func loadForwardUsers()
+    func refreshList()
+    func loadForwardUsers(_ sections: [Int])
 }

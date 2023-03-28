@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Протокол роутера экрана с информацией о пользователе
 protocol UserInfoRouterProtocol {
     func back()
 }

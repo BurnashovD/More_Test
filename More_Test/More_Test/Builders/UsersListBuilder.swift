@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Сборщик модуля списка пользователей
 enum UsersListModulBuilder {
     static func build(navigationController: UINavigationController) -> UIViewController {
         let view = UsersListViewController()

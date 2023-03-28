@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Протокол базового роутера
 protocol BaseRouterProtocol {
     func initialVC()
     func forward(_ user: User)

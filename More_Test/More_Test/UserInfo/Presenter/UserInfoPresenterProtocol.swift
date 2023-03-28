@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Протокол презентера экрана с информацией о выбранном пользователе
 protocol UserInfoPresenterProtocol {
     var user: User { get set }
     func fetchInfo()
