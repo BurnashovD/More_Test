@@ -271,8 +271,8 @@
 			children = (
 				A562A74629D241C100C02C26 /* Protocols */,
 				A562A72E29D229EB00C02C26 /* NetworkService.swift */,
-				A54957A729D332B80009ACA8 /* GitHubRequest.swift */,
 				A562A74929D241D800C02C26 /* ImageService.swift */,
+				A54957A729D332B80009ACA8 /* GitHubRequest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

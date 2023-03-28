@@ -40,7 +40,7 @@ final class ProfilePhotoCell: UITableViewCell {
     // MARK: - Private methods
     
     private func configureUI() {
-        backgroundColor = UIColor(named: "default")
+        backgroundColor = UIColor(named: Constants.defaultColorName)
         addSubview(usersPhotoImageView)
     }
     
@@ -50,5 +50,12 @@ final class ProfilePhotoCell: UITableViewCell {
             make.leading.equalTo(contentView).offset(10)
             make.width.height.equalTo(200)
         }
+    }
+}
+
+/// Константы
+private extension ProfilePhotoCell {
+    enum Constants {
+        static let defaultColorName = "default"
     }
 }

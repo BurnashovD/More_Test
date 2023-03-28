@@ -53,15 +53,15 @@ final class PersonalInfoCell: UITableViewCell {
     }
     
     func configure(_ user: User) {
-        userNameLabel.text = user.name == "" ? "no name" : user.name
-        emailLabel.text = user.email == "" ? "no email" : user.email
-        companyNameLabel.text = user.company == "" ? "no company" : "Company: \(user.company)"
+        userNameLabel.text = user.name == Constants.emptyStringValue ? Constants.defaultNameLabelText : user.name
+        emailLabel.text = user.email == Constants.emptyStringValue ? Constants.defaultEmailLabelText : user.email
+        companyNameLabel.text = user.company == Constants.emptyStringValue ? Constants.defaultCompanyLabelText : "\(Constants.companyText) \(user.company)"
     }
     
     // MARK: - Private methods
     
     private func configureUI() {
-        backgroundColor = UIColor(named: "default")
+        backgroundColor = UIColor(named: Constants.defaultColorName)
         addSubviewsOnStack()
         addSubview(personalInfoStackView)
     }
@@ -77,5 +77,17 @@ final class PersonalInfoCell: UITableViewCell {
             make.top.bottom.trailing.equalTo(contentView)
             make.leading.equalTo(contentView).offset(15)
         }
+    }
+}
+
+/// Константы
+private extension PersonalInfoCell {
+    enum Constants {
+        static let defaultColorName = "default"
+        static let defaultNameLabelText = "no name"
+        static let defaultEmailLabelText = "no email"
+        static let defaultCompanyLabelText = "no company"
+        static let companyText = "Company:"
+        static let emptyStringValue = ""
     }
 }

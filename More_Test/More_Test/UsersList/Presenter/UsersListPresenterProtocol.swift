@@ -11,6 +11,7 @@ import Foundation
 protocol UsersListPresenterProtocol {
     var users: [User] { get set }
     func fetchUsers()
+    func refreshList()
     func fetchForwardUsers()
     func goForward(_ user: User)
 }

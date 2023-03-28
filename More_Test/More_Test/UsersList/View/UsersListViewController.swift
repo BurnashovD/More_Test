@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import PromiseKit
 
 /// Список пользователей GitHub
 final class UsersListViewController: UIViewController {
@@ -14,8 +15,15 @@ final class UsersListViewController: UIViewController {
     
     private let usersTableView: UITableView = {
         let table = UITableView()
+        table.separatorStyle = .none
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
+    }()
+    
+    private let listRefreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.tintColor = .black
+        return control
     }()
     
     // MARK: - Public properties
@@ -34,20 +42,21 @@ final class UsersListViewController: UIViewController {
     // MARK: - Private methods
     
     private func configureUI() {
-        title = "Users"
+        title = Constants.navigationTitle
         configureTableView()
-        usersTableView.separatorStyle = .none
         view.addSubview(usersTableView)
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = UIColor(named: "default")
+        navigationController?.navigationBar.barTintColor = UIColor(named: Constants.defaultColorName)
+        listRefreshControl.addTarget(self, action: #selector(refreshListAction), for: .valueChanged)
     }
     
     private func configureTableView() {
-        usersTableView.backgroundColor = UIColor(named: "default")
+        usersTableView.addSubview(listRefreshControl)
+        usersTableView.backgroundColor = UIColor(named: Constants.defaultColorName)
         usersTableView.delegate = self
         usersTableView.dataSource = self
         usersTableView.prefetchDataSource = self
-        usersTableView.register(UserCell.self, forCellReuseIdentifier: "userCell")
+        usersTableView.register(UserCell.self, forCellReuseIdentifier: Constants.userCellIdentifier)
     }
     
     private func setupLayout() {
@@ -59,6 +68,10 @@ final class UsersListViewController: UIViewController {
             make.top.leading.bottom.trailing.equalToSuperview()
         }
     }
+    
+    @objc private func refreshListAction() {
+        presenter?.refreshList()
+    }
 }
 
 /// Реализация протокола вью
@@ -69,6 +82,11 @@ extension UsersListViewController: UsersListViewProtocol {
     
     func loadForwardUsers(_ sections: [Int]) {
         self.usersTableView.insertSections(IndexSet(sections), with: .automatic)
+    }
+    
+    func refreshList() {
+        listRefreshControl.endRefreshing()
+        usersTableView.reloadData()
     }
 }
 
@@ -84,7 +102,7 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell,
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.userCellIdentifier, for: indexPath) as? UserCell,
             let user = presenter?.users[indexPath.section]
         else { return UITableViewCell() }
         
@@ -107,13 +125,24 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource, U
         guard
             let current = current,
             let count = presenter?.users.count,
-            Int(current) > count - 10
+            Int(current) > count - Constants.cellTillTableEnd
         else { return }
         presenter?.fetchForwardUsers()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
+        Constants.cellHeight
+    }
+}
+
+/// Константы
+private extension UsersListViewController {
+    enum Constants {
+        static let userCellIdentifier = "userCell"
+        static let defaultColorName = "default"
+        static let navigationTitle = "GitHub"
+        static let cellHeight: CGFloat = 60
+        static let cellTillTableEnd = 10
     }
 }
 

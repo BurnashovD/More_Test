@@ -47,9 +47,3 @@ struct NetworkService: NetworkServiceProtocol {
     }
 }
 
-
-
-enum RequestType {
-    case users
-    case user
-}

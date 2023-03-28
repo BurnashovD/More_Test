@@ -63,6 +63,19 @@ final class UsersListPresenter: UsersListPresenterProtocol {
         }
     }
     
+    func refreshList() {
+        firstly {
+            networkService.fetchUsers(method: .users(0), request: .users)
+        }.then { users in
+            self.users = users
+            return Promise()
+        }.done { _ in
+            self.view?.refreshList()
+        }.catch { error in
+            print(error.localizedDescription)
+        }
+    }
+    
     func goForward(_ user: User) {
         router.forward(user)
     }
