@@ -121,7 +121,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
         case .personal:
             return 70
         case .info:
-            return 120
+            return 140
         }
     }
 }

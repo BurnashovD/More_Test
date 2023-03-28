@@ -58,7 +58,7 @@ final class UserInfoCell: UITableViewCell {
     func configure(_ user: User) {
         followersLabel.text = "Followers: \(user.followers)"
         followingLabel.text = "Following: \(user.following)"
-        createdDateLabel.text = convertDateFormat(inputDate: user.createdDate)
+        createdDateLabel.text = "Account created: \(convertDateFormat(inputDate: user.createdDate))"
     }
     
     // MARK: - Private methods
@@ -84,11 +84,14 @@ final class UserInfoCell: UITableViewCell {
     }
     
     private func convertDateFormat(inputDate: String) -> String {
+        guard !inputDate.isEmpty else { return "" }
+        var value = inputDate
+        value.removeLast()
         let olDateFormatter = DateFormatter()
         olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        guard let oldDate = olDateFormatter.date(from: inputDate) else { return "" }
+        guard let oldDate = olDateFormatter.date(from: value) else { return "" }
         let convertDateFormatter = DateFormatter()
-        convertDateFormatter.dateFormat = "dd MMM yyyy h:mm a"
+        convertDateFormatter.dateFormat = "dd MMM yyyy h:mm:a"
         return convertDateFormatter.string(from: oldDate)
     }
 }
