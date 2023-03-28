@@ -52,7 +52,6 @@ extension GitHub: TargetType {
     }
     
     var headers: [String : String]? {
-//        return ["Authorization": "Bearer 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"]
         return ["Content-Type": "application/json"]
     }
 }
