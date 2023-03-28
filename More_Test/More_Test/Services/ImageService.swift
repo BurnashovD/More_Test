@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// Сервис изображений
 struct ImageService: ImageServiceProtocol {
-        
+    // MARK: - Public methods
+    
     func fetchImage(_ url: String, _ completion: @escaping ((Result<Data, Error>) -> Void)) {
         guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import PromiseKit
 
+/// Протокол сетевого сервиса
 protocol NetworkServiceProtocol {
-    func fetchUsers(method: GitHub<Any>, request: RequestType, _ completion: @escaping ((Result<[User], Error>) -> Void))
+    func fetchUsers(method: GitHub<Any>, request: RequestType) -> Promise<[User]>
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Сборщик модуля информации о пользователе
 enum UserInfoModulBuilder {
     static func build(_ user: User, navController: UINavigationController) -> UIViewController {
         let view = UserInfoViewController()

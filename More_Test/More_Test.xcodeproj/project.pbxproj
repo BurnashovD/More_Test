@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A54957A829D332B80009ACA8 /* GitHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54957A729D332B80009ACA8 /* GitHubRequest.swift */; };
 		A562A6D929D1CFDD00C02C26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A6D829D1CFDD00C02C26 /* AppDelegate.swift */; };
 		A562A6DB29D1CFDD00C02C26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A6DA29D1CFDD00C02C26 /* SceneDelegate.swift */; };
 		A562A6DD29D1CFDD00C02C26 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562A6DC29D1CFDD00C02C26 /* UsersListViewController.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A54957A729D332B80009ACA8 /* GitHubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRequest.swift; sourceTree = "<group>"; };
 		A562A6D529D1CFDD00C02C26 /* More_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = More_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A562A6D829D1CFDD00C02C26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A562A6DA29D1CFDD00C02C26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				A562A74629D241C100C02C26 /* Protocols */,
 				A562A72E29D229EB00C02C26 /* NetworkService.swift */,
+				A54957A729D332B80009ACA8 /* GitHubRequest.swift */,
 				A562A74929D241D800C02C26 /* ImageService.swift */,
 			);
 			path = Services;
@@ -468,6 +471,7 @@
 				A562A74129D23ECC00C02C26 /* UserInfoModulBuilder.swift in Sources */,
 				A562A6DB29D1CFDD00C02C26 /* SceneDelegate.swift in Sources */,
 				A562A74A29D241D800C02C26 /* ImageService.swift in Sources */,
+				A54957A829D332B80009ACA8 /* GitHubRequest.swift in Sources */,
 				A562A71929D20A4C00C02C26 /* UserInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

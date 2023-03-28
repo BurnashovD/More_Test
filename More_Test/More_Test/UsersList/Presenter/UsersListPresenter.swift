@@ -6,15 +6,23 @@
 //
 
 import Foundation
+import PromiseKit
 
+/// Презентер экрана списка пользователей
 final class UsersListPresenter: UsersListPresenterProtocol {
+    // MARK: - Public properties
+    
+    var users: [User] = []
+    
+    // MARK: - Private properties
     
     private let networkService: NetworkServiceProtocol
     private let router: BaseRouterProtocol
+    
     private weak var view: UsersListViewProtocol?
     private var lastProfileId = 0
     
-    var users: [User] = []
+    // MARK: - init
     
     init(view: UsersListViewProtocol, networkService: NetworkServiceProtocol, router: BaseRouterProtocol) {
         self.networkService = networkService
@@ -22,39 +30,44 @@ final class UsersListPresenter: UsersListPresenterProtocol {
         self.view = view
     }
     
+    // MARK: - Public methods
+    
     func fetchUsers() {
-        networkService.fetchUsers(method: .users(lastProfileId), request: .users) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(users):
-                self.users = users
-                self.setNewId(users.last?.id)
-                self.view?.loadUsers()
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
+        firstly {
+            networkService.fetchUsers(method: .users(lastProfileId), request: .users)
+        }.then { users in
+            self.users = users
+            self.setNewId(users.last?.id)
+            return Promise()
+        }.done { _ in
+            self.view?.loadUsers()
+        }.catch { error in
+            print(error.localizedDescription)
         }
     }
     
     func fetchForwardUsers() {
-        // TODO: - Закончить префетч
-        networkService.fetchUsers(method: .users(lastProfileId), request: .users) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(users):
-                let oldUsersCount = self.users.count
-                self.users.append(contentsOf: users)
-                let newSections = (oldUsersCount ..< (oldUsersCount + users.count)).map { $0 }
-                self.view?.loadForwardUsers()
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
+        firstly {
+            networkService.fetchUsers(method: .users(lastProfileId), request: .users)
+        }.done { users in
+            guard
+                self.users.last?.id != users.last?.id
+            else { return }
+            let oldUsersCount = self.users.count
+            self.users.append(contentsOf: users)
+            self.setNewId(self.users.last?.id)
+            let newSections = (oldUsersCount ..< (oldUsersCount + users.count)).map { $0 }
+            self.view?.loadForwardUsers(newSections)
+        }.catch { error in
+            print(error.localizedDescription)
         }
     }
     
     func goForward(_ user: User) {
         router.forward(user)
     }
+    
+    // MARK: - Private methods
     
     private func setNewId(_ id: Int?) {
         guard let id = id else { return }

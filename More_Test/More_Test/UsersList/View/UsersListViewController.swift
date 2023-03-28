@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Список пользователей GitHub
 final class UsersListViewController: UIViewController {
     // MARK: - Visual components
     
@@ -60,17 +61,31 @@ final class UsersListViewController: UIViewController {
     }
 }
 
+/// Реализация протокола вью
+extension UsersListViewController: UsersListViewProtocol {
+    func loadUsers() {
+        usersTableView.reloadData()
+    }
+    
+    func loadForwardUsers(_ sections: [Int]) {
+        self.usersTableView.insertSections(IndexSet(sections), with: .automatic)
+    }
+}
+
 /// UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching
 extension UsersListViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         guard let count = presenter?.users.count else { return 0 }
         return count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell,
-            let user = presenter?.users[indexPath.row]
+            let user = presenter?.users[indexPath.section]
         else { return UITableViewCell() }
         
         cell.configure(user)
@@ -88,28 +103,17 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource, U
     
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        // TODO: - Добавить insertRows по indexPath
-        let current = indexPaths.map { "\($0.row)" }.joined(separator: ", ")
+        let current = indexPaths.map(\.section).max()
         guard
-            let row = Int(current),
+            let current = current,
             let count = presenter?.users.count,
-            row >= count - 1
+            Int(current) > count - 10
         else { return }
         presenter?.fetchForwardUsers()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
-    }
-}
-
-extension UsersListViewController: UsersListViewProtocol {
-    func loadUsers() {
-        usersTableView.reloadData()
-    }
-    
-    func loadForwardUsers() {
-        usersTableView.reloadData()
     }
 }
 

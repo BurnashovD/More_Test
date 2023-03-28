@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Ячейка пользователя
 final class UserCell: UITableViewCell {
     // MARK: - Visual components
     

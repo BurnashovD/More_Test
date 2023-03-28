@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Ячейка с персональной информацией пользователя
 final class PersonalInfoCell: UITableViewCell {
     // MARK: - Visual components
     

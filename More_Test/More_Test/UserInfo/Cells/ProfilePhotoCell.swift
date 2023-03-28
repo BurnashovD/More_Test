@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Ячейка с фото пользователя
 final class ProfilePhotoCell: UITableViewCell {
     // MARK: - Visual components
     
@@ -50,5 +51,4 @@ final class ProfilePhotoCell: UITableViewCell {
             make.width.height.equalTo(200)
         }
     }
-
 }

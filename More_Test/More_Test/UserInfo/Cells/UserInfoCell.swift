@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Ячейка с информацией о пользователе
 final class UserInfoCell: UITableViewCell {
     // MARK: - Visual components
     
@@ -53,7 +54,7 @@ final class UserInfoCell: UITableViewCell {
         super.layoutSubviews()
         createStackViewConstraints()
     }
-    // TODO: - Исправь форматтер даты!
+    
     func configure(_ user: User) {
         followersLabel.text = "Followers: \(user.followers)"
         followingLabel.text = "Following: \(user.following)"

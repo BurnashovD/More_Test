@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Экран с информацией о выбранном пользователе
 final class UserInfoViewController: UIViewController {
     // MARK: - Visual components
     
@@ -18,6 +19,8 @@ final class UserInfoViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
+    
+    // MARK: - Public properties
     
     var presenter: UserInfoPresenterProtocol?
     
@@ -62,9 +65,16 @@ final class UserInfoViewController: UIViewController {
             make.top.bottom.leading.trailing.equalTo(view)
         }
     }
-    
 }
 
+/// Реализация протокола вью
+extension UserInfoViewController: UserInfoViewProtocol {
+    func loadUserInfo() {
+        userInfoTableView.reloadData()
+    }
+}
+
+/// UITableViewDelegate, UITableViewDataSource
 extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         cellTypes.count
@@ -116,12 +126,7 @@ extension UserInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension UserInfoViewController: UserInfoViewProtocol {
-    func loadUserInfo() {
-        userInfoTableView.reloadData()
-    }
-}
-
+/// Типы ячеек
 private extension UserInfoViewController {
     enum CellTypes {
         case photo

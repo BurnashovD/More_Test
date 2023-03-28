@@ -6,13 +6,22 @@
 //
 
 import Foundation
+import PromiseKit
 
+/// Презентер экрана с информацией о выбранном пользователе
 final class UserInfoPresenter: UserInfoPresenterProtocol {
+    // MARK: - Private properties
+    
     private let networkService: NetworkServiceProtocol
     private let router: UserInfoRouterProtocol
+    
     private weak var view: UserInfoViewProtocol?
     
+    // MARK: - Public propeties
+    
     var user: User
+    
+    // MARK: - init
     
     init(view: UserInfoViewProtocol, user: User, router: UserInfoRouterProtocol, networkService: NetworkServiceProtocol) {
         self.networkService = networkService
@@ -21,17 +30,19 @@ final class UserInfoPresenter: UserInfoPresenterProtocol {
         self.router = router
     }
     
+    // MARK: - Public methods
+    
     func fetchInfo() {
-        networkService.fetchUsers(method: .user(user.login), request: .user) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(user):
-                guard let user = user.first else { return }
-                self.user = user
-                self.view?.loadUserInfo()
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
+        firstly {
+            networkService.fetchUsers(method: .user(user.login), request: .user)
+        }.then { users in
+            guard let user = users.first else { return Promise() }
+            self.user = user
+            return Promise()
+        }.done { _ in
+            self.view?.loadUserInfo()
+        }.catch { error in
+            print(error.localizedDescription)
         }
     }
 }
