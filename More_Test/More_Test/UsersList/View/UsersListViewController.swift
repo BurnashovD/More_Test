@@ -85,7 +85,9 @@ extension UsersListViewController: UsersListViewProtocol {
     }
     
     func refreshList() {
-        listRefreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.listRefreshControl.endRefreshing()
+        }
         usersTableView.reloadData()
     }
 }
